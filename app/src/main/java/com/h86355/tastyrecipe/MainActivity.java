@@ -71,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
             timeZone = "+" + timeZoneHour + "00";
         }
         Log.d(TAG, "requestRecipes: " + timeZone);
-        mainFragmentViewModel.getRecipesAPI(0, 5, "", "");
+
+        mainFragmentViewModel.getRecipesAPI(0, 10, "", "");
         mainFragmentViewModel.getRecommendedFeedsAPI(0, 1, timeZone, false);
     }
 }

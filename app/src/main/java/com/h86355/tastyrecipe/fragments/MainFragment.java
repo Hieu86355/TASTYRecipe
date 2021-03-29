@@ -78,23 +78,6 @@ public class MainFragment extends Fragment implements IMainFragmentListener {
                         .commit();
             }
         });
-
-        binding.seeMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SearchFragment searchFragment = new SearchFragment();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("isLoadMore", true);
-                searchFragment.setArguments(bundle);
-                getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                                R.anim.enter_from_left, R.anim.exit_to_right)
-                        .replace(R.id.layout_main_container, searchFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
     }
 
     private void initRecyclerView() {
@@ -173,7 +156,7 @@ public class MainFragment extends Fragment implements IMainFragmentListener {
     @Override
     public void onRefreshClick(String refreshTag) {
         if (refreshTag.equals("today_recipes")) {
-            mainFragmentViewModel.getRecipesAPI(0, 5, "", "");
+            mainFragmentViewModel.getRecipesAPI(0, 10, "", "");
             todayRecipesAdapter.displayLoading();
         } else if (refreshTag.equals("recommened_feeds")) {
             String timeZone = "";

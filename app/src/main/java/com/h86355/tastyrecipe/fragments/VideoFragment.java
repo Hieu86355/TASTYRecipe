@@ -55,7 +55,7 @@ public class VideoFragment extends Fragment {
     private void subscribeUi(RecipeCollection recipeCollection) {
         if (recipeCollection.getRecipes() == null) {
             if (recipeCollection.getVideo_url() == null) {
-                binding.errorView.setAnimation(R.raw.error_in_folder);
+                binding.errorView.setAnimation(R.raw.empty);
 
             } else if (!recipeCollection.getVideo_url().isEmpty()){
                 binding.errorView.setAnimation(R.raw.loading_food);
@@ -67,7 +67,7 @@ public class VideoFragment extends Fragment {
         } else if (detailFragmentViewModel.getPosition() != -1) {
             int position = detailFragmentViewModel.getPosition();
             if (recipeCollection.getVideo_url() == null) {
-                binding.errorView.setAnimation(R.raw.error_in_folder);
+                binding.errorView.setAnimation(R.raw.empty);
 
             } else if (!recipeCollection.getVideo_url().isEmpty()){
                 binding.errorView.setAnimation(R.raw.loading_food);

@@ -37,6 +37,10 @@ public class SearchFragment extends Fragment implements ISearchListener {
     private SearchAdapter searchAdapter;
     private MainFragmentViewModel mainFragmentViewModel;
     private DetailFragmentViewModel detailFragmentViewModel;
+    private boolean isQueryForMore;
+    private int fromPage = 0;
+    private String searchQuery = "";
+    private String searchTag = "";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,14 +58,6 @@ public class SearchFragment extends Fragment implements ISearchListener {
         initTags();
         initRecyclerView();
         handleClick();
-        Bundle bundle = getArguments();
-        if (bundle!= null && bundle.getBoolean("isLoadMore")) {
-            mainFragmentViewModel.getSearchRecipesAPI(0, 10,"", "");
-            binding.tagView.setVisibility(View.GONE);
-            binding.searchRv.setVisibility(View.VISIBLE);
-            searchAdapter.displayLoading();
-            binding.searchView.clearFocus();
-        }
     }
 
     private void handleClick() {
@@ -87,9 +83,20 @@ public class SearchFragment extends Fragment implements ISearchListener {
                         binding.searchRv.setVisibility(View.VISIBLE);
                         searchAdapter.displayError();
                     }
+                    if (binding.animationView.getVisibility() == View.VISIBLE) {
+                        binding.animationView.setAnimation(R.raw.empty);
+                    }
                 } else {
                     Log.d(TAG, "onChanged: not null recipes");
-                    searchAdapter.setSearchResults(recipeCollections);
+                    if (isQueryForMore) {
+                        binding.animationView.setVisibility(View.GONE);
+                        searchAdapter.addSearchResults(recipeCollections);
+                        if (binding.animationView.getVisibility() == View.VISIBLE) {
+                            binding.animationView.setVisibility(View.GONE);
+                        }
+                    } else {
+                        searchAdapter.setSearchResults(recipeCollections);
+                    }
                 }
             }
         });
@@ -99,6 +106,25 @@ public class SearchFragment extends Fragment implements ISearchListener {
         searchAdapter = new SearchAdapter(getActivity(), this);
         binding.searchRv.setAdapter(searchAdapter);
         binding.searchRv.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+
+        binding.searchRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    if (binding.animationView.getVisibility() != View.VISIBLE) {
+                        fromPage += 10;
+                        mainFragmentViewModel.getSearchRecipesAPI(fromPage, 10, searchQuery, searchTag);
+                        binding.animationView.setVisibility(View.VISIBLE);
+                        isQueryForMore = true;
+                    }
+                }
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    binding.animationView.setVisibility(View.GONE);
+                }
+            }
+
+        });
     }
 
     private void initSearchView() {
@@ -124,6 +150,7 @@ public class SearchFragment extends Fragment implements ISearchListener {
                 binding.searchRv.setVisibility(View.VISIBLE);
                 searchAdapter.displayLoading();
                 mainFragmentViewModel.getSearchRecipesAPI(0, 10, query, "");
+                 searchQuery = query;
                 return false;
             }
 
@@ -145,6 +172,7 @@ public class SearchFragment extends Fragment implements ISearchListener {
                 binding.tagView.setVisibility(View.GONE);
                 searchAdapter.displayLoading();
                 mainFragmentViewModel.getSearchRecipesAPI(0, 10, "", text);
+                searchTag = text;
             }
 
             @Override

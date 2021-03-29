@@ -1,6 +1,7 @@
 package com.h86355.tastyrecipe.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.h86355.tastyrecipe.R;
 import com.h86355.tastyrecipe.databinding.ItemLoadingBinding;
 import com.h86355.tastyrecipe.databinding.ItemRecommenedBinding;
 import com.h86355.tastyrecipe.models.RecipeCollection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,8 +86,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.TagHolder>
             return LOADING;
         } else if (searchResults.get(0).getName() == "ERROR") {
             return ERROR;
-        }
-        else {
+        } else {
             return ITEM;
         }
     }
@@ -110,6 +111,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.TagHolder>
 
     public void setSearchResults(List<RecipeCollection> results) {
         searchResults = results;
+        notifyDataSetChanged();
+    }
+
+    public void addSearchResults(List<RecipeCollection> moreResults) {
+        if (searchResults != null && searchResults.size() > 0) {
+            searchResults.addAll(moreResults);
+        }
         notifyDataSetChanged();
     }
 
