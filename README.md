@@ -1,6 +1,8 @@
+[apk]:               https://github.com/Hieu86355/TASTYRecipe/blob/master/app-debug/app-debug.apk
 [github]:            https://github.com/Hieu86355/TASTYRecipe
 [platform-badge]:   https://img.shields.io/badge/Platform-Android-F3745F.svg
 [minsdk-badge]:     https://img.shields.io/badge/minSdkVersion-21-F3745F.svg
+[apk-badge]:              https://img.shields.io/badge/Download-APK-orange
 <!------------------------------------------------------------------------------------------------------->
 
 TASTY Recipe
@@ -8,6 +10,7 @@ TASTY Recipe
 
 [![platform-badge]][github]
 [![minsdk-badge]][github]
+[![apk-badge]][apk]
 
 Simple Recipe Notebook app gets API from [**TASTY**](https://rapidapi.com/apidojo/api/tasty) using Retrofit2.
 
