@@ -54,6 +54,14 @@ public class SearchFragment extends Fragment implements ISearchListener {
         initTags();
         initRecyclerView();
         handleClick();
+        Bundle bundle = getArguments();
+        if (bundle!= null && bundle.getBoolean("isLoadMore")) {
+            mainFragmentViewModel.getSearchRecipesAPI(0, 10,"", "");
+            binding.tagView.setVisibility(View.GONE);
+            binding.searchRv.setVisibility(View.VISIBLE);
+            searchAdapter.displayLoading();
+            binding.searchView.clearFocus();
+        }
     }
 
     private void handleClick() {

@@ -31,7 +31,7 @@ public class ServiceGenerator {
                 public Response intercept(Chain chain) throws IOException {
                     Request request = chain.request();
                     Request.Builder newRequest = request.newBuilder()
-                            .addHeader("x-rapidapi-key", "71cc822456mshf3db7c3df9c17cfp17e305jsnaa8b3ad9f251")
+                            .addHeader("x-rapidapi-key", "43c215aa23mshce137b8289cf71bp1f3b10jsn972963aad7f4")
                             .addHeader("x-rapidapi-host", "tasty.p.rapidapi.com");
                     return chain.proceed(newRequest.build());
                 }
