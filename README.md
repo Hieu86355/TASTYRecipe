@@ -1,7 +1,7 @@
 # TASTYRecipe
 The Recipe Notebook App get API from TASTY using Retrofit2.
 <br>500 / month quota free authentication key from https://rapidapi.com/apidojo/api/tasty
-<br><span style="background-color: #FFFF00">Marked text</span>
+<br><mark>Required: android 5.0 and above</mark>
 <br/><h3>Libraries:</h3>
 <a href="https://github.com/square/retrofit">Retrofit2</a>
 <br><a href="https://github.com/google/ExoPlayer">ExoPlayer</a>
