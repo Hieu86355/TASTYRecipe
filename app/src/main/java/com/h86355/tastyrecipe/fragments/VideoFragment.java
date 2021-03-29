@@ -56,6 +56,7 @@ public class VideoFragment extends Fragment {
         if (recipeCollection.getRecipes() == null) {
             if (recipeCollection.getVideo_url() == null) {
                 binding.errorView.setAnimation(R.raw.empty);
+                binding.errorView.setRepeatCount(LottieDrawable.INFINITE);
 
             } else if (!recipeCollection.getVideo_url().isEmpty()){
                 binding.errorView.setAnimation(R.raw.loading_food);
