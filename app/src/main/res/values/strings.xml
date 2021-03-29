@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TASTY Recipe</string>
+    <string name="search_question">What would you \nlike to cook?</string>
+    <string name="today">Today</string>
+    <string name="see_more">see more</string>
+
+    <string name="fragment_detail_tag">Fragment_Detail</string>
+    <string name="fragment_main_tag">Fragment_Main</string>
+    <string name="fragment_feeds_tag">Fragment_Feeds</string>
+    <string name="fragment_recipes_tag">Fragment_Recipes</string>
+    <string name="fragment_search_tag">Fragment_Search</string>
+
+    <string name="recipe_parcelable_key">Recipe</string>
+</resources>
