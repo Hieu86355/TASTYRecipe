@@ -29,3 +29,7 @@ Simple Recipe Notebook app gets API from [**TASTY**](https://rapidapi.com/apidoj
     <img src="https://github.com/Hieu86355/TASTYRecipe/blob/master/images/image_detail.png" width="32%">
     <img src="https://github.com/Hieu86355/TASTYRecipe/blob/master/images/image_search.png" width="32%">
 </div>
+
+
+## Architecture Diagram
+<img src="https://github.com/Hieu86355/TASTYRecipe/blob/master/images/MVVM-architecture.png" width="85%">
